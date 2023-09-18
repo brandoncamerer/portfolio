@@ -8,13 +8,14 @@ import {
   html,
   css,
   reactjs,
-  redux,
-  tailwind,
   nodejs,
-  mongodb,
   git,
   figma,
+  premiere,
+  ae,
   docker,
+  photoshop,
+  illustrator,
   meta,
   starbucks,
   tesla,
@@ -22,7 +23,6 @@ import {
   carrent,
   jobit,
   tripguide,
-  threejs,
 } from "../assets";
 
 export const navLinks = [
@@ -46,15 +46,15 @@ const services = [
     icon: web,
   },
   {
-    title: "React Native Developer",
+    title: "Product Designer",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "Prompt Engineer",
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "Visual Designer",
     icon: creator,
   },
 ];
@@ -81,24 +81,8 @@ const technologies = [
     icon: reactjs,
   },
   {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
     name: "Node JS",
     icon: nodejs,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "Three JS",
-    icon: threejs,
   },
   {
     name: "git",
@@ -112,59 +96,75 @@ const technologies = [
     name: "docker",
     icon: docker,
   },
+  {
+    name: "Photoshop",
+    icon: photoshop,
+  },
+  {
+    name: "After Effects",
+    icon: ae,
+  },
+  {
+    name: "Illustrator",
+    icon: illustrator,
+  },
+  {
+    name: "Premiere",
+    icon: premiere,
+  },
 ];
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
+    title: "Senior UX Engineer",
+    company_name: "CloudFit Software",
     icon: starbucks,
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "Apr 2019 - Current",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
+      "Developing and designing web applications using React.js and other related technologies.",
       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Delivering breath taking user experiences.",
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
+    title: "Area Director",
+    company_name: "Young Life",
     icon: tesla,
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "Oct 2014 - Apr 2018",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Founded and Directed a local non-profit chapter",
+      "Used UX design principles to fundraise digitally",
+      "Mentored youth, committee members, volunteers, donors, and staff",
+      "Hired staff, recruited volunteers, and managed committees.",
     ],
   },
   {
-    title: "Web Developer",
-    company_name: "Shopify",
+    title: "Founder & CEO",
+    company_name: "Kizuka Technologies",
     icon: shopify,
-    iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
+    iconBg: "#E6DEDD",
+    date: "Nov 2012 - Nov 2014",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Provided visual, web, UX, and UI design services to companies",
+      "UX design and research roles at Microsoft, conducted user research, developed mockups, and presented redesigns to stakeholders",
+      "Devleoped a fan engagement web app for the Seahawks",
+      "founded Ikos, a Homeless Solution Web App, winning an award for it and being featured in GeekWire",
     ],
   },
   {
-    title: "Full stack Developer",
-    company_name: "Meta",
+    title: "Inventory Control Specialist",
+    company_name: "Apple",
     icon: meta,
     iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    date: "Sep 2007 - Sep 2009",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Ensured accurate and up-to-date inventory levels for Apple products through regular audits.",
+      "Monitored the quality of incoming inventory, addressing issues to uphold Apple's high product standards.",
+      "Continuously improved inventory management processes, implementing efficiency enhancements.",
+      "Utilized advanced inventory tracking systems to maintain accurate records and track product movements.",
     ],
   },
 ];
@@ -172,93 +172,85 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+      "Brandon does high-quality work with great care and creativity. His excellence and efficiency are off the charts!",
+    name: "Ben Malcolmson",
+    designation: "Director",
+    company: "Trinity Capital",
+    image: "https://i.imgur.com/m7yLiox.jpg",
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+      "Brandon created an excellent user experience for my start up. He is extremely good at understanding what the users want.",
+    name: "Clint Gresham",
+    designation: "Founder",
+    company: "CG Speaks",
+    image: "https://i.imgur.com/QGsSS4v.jpg",
   },
 ];
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "CloudFit Software",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Cutting-edge website tailored to our cloud software company, offering a seamless digital hub for users to explore, deploy, and oversee our suite of cloud-based solutions, simplifying their technological endeavors.",
     tags: [
       {
-        name: "react",
+        name: "JavaScript",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "HTML",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "CSS",
         color: "pink-text-gradient",
       },
     ],
     image: carrent,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://cloudfitsoftware.com/",
   },
   {
-    name: "Job IT",
+    name: "Sector 7 Contracting",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "A web-based platform for a landscaping contracting business, empowering users to effortlessly explore, hire, and oversee landscaping services from a diverse range of professionals, offering an accessible.",
     tags: [
       {
-        name: "react",
+        name: "Javascript",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "CSS",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "HTML",
         color: "pink-text-gradient",
       },
     ],
     image: jobit,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://sector7gc.com/",
   },
   {
-    name: "Trip Guide",
+    name: "Neuomorphic ToDo",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "A digital to-do application with a neumorphic design approach, offering an intuitive and visually pleasing solution for task management. Users can effortlessly create, organize, and complete tasks with a user-friendly interface.",
     tags: [
       {
-        name: "nextjs",
+        name: "Javascript",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "CSS",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "HTML",
         color: "pink-text-gradient",
       },
     ],
     image: tripguide,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/brandoncamerer/Neumorphism-ToDo",
   },
 ];
 
