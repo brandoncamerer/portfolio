@@ -19,7 +19,7 @@ const Hero = () => {
             Hi, I'm <span className="text-[#915EFF]">Brandon</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I design and build experiences
+            I design and build digital experiences
           </p>
           <p className={`${styles.heroHelper} mt-2 text-white-100`}>
           Click and Drag 3d Elements
