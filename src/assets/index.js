@@ -8,6 +8,8 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 
 import css from "./tech/css.png";
+import rightarrow from "./rightarrow.png";
+import leftarrow from "./leftarrow.png";
 import photoshop from "./tech/photoshop.png";
 import docker from "./tech/docker.png";
 import illustrator from "./tech/illustrator.png";
@@ -44,6 +46,8 @@ export {
   menu,
   close,
   css,
+  rightarrow,
+  leftarrow,
   docker,
   illustrator,
   photoshop,

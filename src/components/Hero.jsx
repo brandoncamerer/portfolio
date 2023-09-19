@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
+import { rightarrow } from "../assets";
+import { leftarrow } from "../assets";
 
 const Hero = () => {
   return (
@@ -19,10 +21,8 @@ const Hero = () => {
             Hi, I'm <span className="text-[#915EFF]">Brandon</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I design and build digital experiences
-          </p>
-          <p className={`${styles.heroHelper} mt-2 text-white-100`}>
-          Click and Drag 3d Elements
+            Click and Drag the Desktop Below!  <img src={rightarrow} alt="logo" className="mt-2 mr-10 w-20 float-right" />
+            <img src={leftarrow} alt="logo" className="hidden md:block w-60 mt-5" />
           </p>
         </div>
       

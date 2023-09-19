@@ -8,7 +8,7 @@ const styles = {
   heroSubText:
     "text-[#dfd9ff] font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px]",
   heroHelper:
-    "z-[99999] italic text-[#dfd9ff] font-small lg:text-[20px] sm:text-[18px] xs:text-[16px] text-[16px] lg:leading-[30px]",
+    "pt-10 z-[99999] italic text-[#dfd9ff] font-small lg:text-[30px] sm:text-[18px] xs:text-[16px] text-[16px] lg:leading-[30px]",
 
   sectionHeadText:
     "text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]",
