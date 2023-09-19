@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
-const Computers = ({ isMobile }) => {
+const Computers = () => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
@@ -21,8 +21,8 @@ const Computers = ({ isMobile }) => {
       <pointLight intensity={2} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -4.2] : [0, -4.25, -1.5]}
+        scale={0.75}
+        position={[0, -4.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </group>
@@ -30,32 +30,27 @@ const Computers = ({ isMobile }) => {
 };
 
 const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [cameraSettings, setCameraSettings] = useState({
+    position: [20, 3, 5],
+    fov: 25,
+  });
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        console.log("Changing FOV to 50");
+        setCameraSettings({ ...cameraSettings, fov: 75 });
+      } else {
+        console.log("Changing FOV to 25");
+        setCameraSettings({ ...cameraSettings, fov: 25 });
+      }
     };
 
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    
 
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
-
-  const cameraSettings = isMobile
-    ? { position: [20, 3, 12], fov: 40 }
-    : { position: [20, 3, 5], fov: 25 };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [cameraSettings]);
 
   return (
     <Canvas
@@ -66,14 +61,12 @@ const ComputersCanvas = () => {
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <Computers isMobile={isMobile} />
-        {!isMobile && (
-          <OrbitControls
-            enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
-        )}
+        <Computers />
+        <OrbitControls
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 2}
+        />
         <Preload all />
       </Suspense>
     </Canvas>
