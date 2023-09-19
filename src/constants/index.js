@@ -232,7 +232,7 @@ const projects = [
     source_code_link: "https://sector7gc.com/",
   },
   {
-    name: "Neuomorphic ToDo",
+    name: "Neumorphic ToDo",
     description:
       "A digital to-do application with a neumorphic design approach, offering an intuitive and visually pleasing solution for task management. Users can effortlessly create, organize, and complete tasks with a user-friendly interface.",
     tags: [
