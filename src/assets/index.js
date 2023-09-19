@@ -9,6 +9,7 @@ import close from "./close.svg";
 
 import css from "./tech/css.png";
 import rightarrow from "./rightarrow.png";
+import me from "./me.png";
 import leftarrow from "./leftarrow.png";
 import photoshop from "./tech/photoshop.png";
 import docker from "./tech/docker.png";
@@ -48,6 +49,7 @@ export {
   css,
   rightarrow,
   leftarrow,
+  me,
   docker,
   illustrator,
   photoshop,
