@@ -1,0 +1,7 @@
+# SEO Robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+
+Sitemap: https://brandoncamerer.com/sitemap.xml
