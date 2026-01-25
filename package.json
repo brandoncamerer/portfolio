@@ -12,6 +12,8 @@
     "@emailjs/browser": "^3.10.0",
     "@react-three/drei": "^9.56.24",
     "@react-three/fiber": "^8.11.1",
+    "@sentry/react": "^10.36.0",
+    "@sentry/tracing": "^7.120.4",
     "framer-motion": "^9.0.7",
     "maath": "^0.5.2",
     "react": "^18.2.0",
