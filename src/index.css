@@ -265,3 +265,29 @@
   overflow-x: auto;
   margin-bottom: 1rem;
 }
+
+/* Force standalone Markdown pages into light mode */
+.markdown-preview-light,
+.markdown-preview-light * {
+  color: #1f2937 !important;
+}
+
+.markdown-preview-light h1,
+.markdown-preview-light h2,
+.markdown-preview-light h3,
+.markdown-preview-light h4,
+.markdown-preview-light h5,
+.markdown-preview-light h6,
+.markdown-preview-light strong {
+  color: #111827 !important;
+}
+
+.markdown-preview-light a {
+  color: #4f46e5 !important;
+}
+
+.markdown-preview-light code,
+.markdown-preview-light pre,
+.markdown-preview-light pre * {
+  color: #111827 !important;
+}
