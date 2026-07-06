@@ -23,6 +23,7 @@ export default async (request) => {
     const title = body.title || "Untitled";
     const slug = slugify(body.slug || title);
     const markdown = body.markdown || "";
+    const updatedAt = new Date().toISOString();
 
     if (!slug) {
       return new Response(JSON.stringify({ error: "Missing slug" }), {
@@ -37,13 +38,14 @@ export default async (request) => {
       title,
       slug,
       markdown,
-      updatedAt: new Date().toISOString(),
+      updatedAt,
     };
 
     await store.set(slug, JSON.stringify(page), {
       metadata: {
         title,
         slug,
+        updatedAt,
       },
     });
 

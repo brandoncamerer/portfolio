@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
-import { StarsCanvas } from "./canvas";
 
 const DEFAULT_MARKDOWN = `# Doctrine
 
@@ -29,14 +28,71 @@ const MarkdownPage = () => {
   const [title, setTitle] = useState("Doctrine");
   const [slug, setSlug] = useState("doctrine");
   const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
+  const [pages, setPages] = useState([]);
+  const [editingSlug, setEditingSlug] = useState("");
   const [status, setStatus] = useState("");
 
   useEffect(() => {
-    setSlug(slugify(title));
-  }, [title]);
+    if (!editingSlug) {
+      setSlug(slugify(title));
+    }
+  }, [title, editingSlug]);
 
-  const createPage = async () => {
-    const finalSlug = slug || "untitled";
+  const loadPages = async () => {
+    try {
+      const response = await fetch("/.netlify/functions/list-pages");
+
+      if (!response.ok) {
+        setStatus("Could not load saved pages.");
+        return;
+      }
+
+      const data = await response.json();
+      setPages(data.pages || []);
+    } catch (error) {
+      setStatus("Could not load saved pages.");
+    }
+  };
+
+  useEffect(() => {
+    loadPages();
+  }, []);
+
+  const loadExistingPage = async (pageSlug) => {
+    setStatus("Loading page...");
+
+    try {
+      const response = await fetch(
+        `/.netlify/functions/get-page?slug=${encodeURIComponent(pageSlug)}`
+      );
+
+      if (!response.ok) {
+        setStatus("Could not load that page.");
+        return;
+      }
+
+      const page = await response.json();
+
+      setTitle(page.title || page.slug);
+      setSlug(page.slug);
+      setMarkdown(page.markdown || "");
+      setEditingSlug(page.slug);
+      setStatus(`Editing /${page.slug}`);
+    } catch (error) {
+      setStatus("Could not load that page.");
+    }
+  };
+
+  const startNewPage = () => {
+    setTitle("Doctrine");
+    setSlug("doctrine");
+    setMarkdown(DEFAULT_MARKDOWN);
+    setEditingSlug("");
+    setStatus("Creating a new page.");
+  };
+
+  const savePage = async () => {
+    const finalSlug = editingSlug || slug || "untitled";
 
     setStatus("Saving...");
 
@@ -60,88 +116,161 @@ const MarkdownPage = () => {
 
     const page = await response.json();
 
-    setStatus("Saved.");
+    setEditingSlug(page.slug);
+    setSlug(page.slug);
+    setStatus(`Saved /${page.slug}`);
+
+    await loadPages();
+
     navigate(`/${page.slug}`);
   };
 
   return (
-    <div className="relative z-0 bg-primary min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 py-24">
+    <div className="min-h-screen bg-[#f3f4f6]">
+      <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="mb-10">
-          <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">
-            Markdown Page Creator
+          <p className="text-gray-500 uppercase tracking-wider text-sm">
+            Markdown Admin
           </p>
 
-          <h1 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
-            Create a Markdown Page.
+          <h1 className="text-gray-900 font-black md:text-[56px] sm:text-[44px] text-[32px]">
+            Create or Edit Pages
           </h1>
 
-          <p className="text-secondary text-[17px] max-w-3xl leading-[30px] mt-4">
-            Choose a title, write Markdown, then create a saved page like /doctrine.
+          <p className="text-gray-600 text-[17px] max-w-3xl leading-[30px] mt-4">
+            Create new Markdown pages or edit pages you already saved.
           </p>
         </div>
 
-        <div className="bg-tertiary rounded-2xl p-5 mb-6">
-          <label className="text-white font-bold block mb-2">Page Title</label>
+        <div className="grid lg:grid-cols-[280px_1fr] grid-cols-1 gap-6">
+          <aside className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm h-fit">
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <h2 className="text-gray-900 text-lg font-bold">Saved Pages</h2>
 
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full rounded-xl bg-black-100 text-white p-4 outline-none border border-white/10 mb-4"
-            placeholder="Doctrine"
-          />
-
-          <p className="text-secondary">
-            URL preview:{" "}
-            <span className="text-white">
-              brandoncamerer.com/{slug || "untitled"}
-            </span>
-          </p>
-
-          {status && <p className="text-secondary mt-3">{status}</p>}
-        </div>
-
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
-          <div className="bg-tertiary rounded-2xl p-5">
-            <h2 className="text-white text-xl font-bold mb-4">Editor</h2>
-
-            <textarea
-              value={markdown}
-              onChange={(e) => setMarkdown(e.target.value)}
-              className="w-full min-h-[65vh] rounded-xl bg-black-100 text-white p-5 font-mono text-sm outline-none border border-white/10"
-              spellCheck="false"
-            />
-          </div>
-
-          <div className="bg-tertiary rounded-2xl p-5">
-            <h2 className="text-white text-xl font-bold mb-4">Preview</h2>
-
-            <div className="min-h-[65vh] rounded-xl bg-black-100 p-5 border border-white/10 overflow-auto">
-              <article className="markdown-preview">
-                <ReactMarkdown>{markdown}</ReactMarkdown>
-              </article>
+              <button
+                onClick={startNewPage}
+                className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-900 px-3 py-2 rounded-lg font-semibold"
+              >
+                New
+              </button>
             </div>
-          </div>
-        </div>
 
-        <div className="mt-6 flex gap-3">
-          <button
-            onClick={createPage}
-            className="bg-[#915EFF] py-3 px-6 rounded-xl text-white font-bold"
-          >
-            Create Page
-          </button>
+            {pages.length === 0 ? (
+              <p className="text-gray-500 text-sm">No saved pages yet.</p>
+            ) : (
+              <div className="space-y-2">
+                {pages.map((page) => (
+                  <button
+                    key={page.slug}
+                    onClick={() => loadExistingPage(page.slug)}
+                    className={`w-full text-left px-3 py-3 rounded-xl border ${
+                      editingSlug === page.slug
+                        ? "bg-indigo-50 border-indigo-200 text-indigo-900"
+                        : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="font-bold">{page.title}</div>
+                    <div className="text-xs opacity-70">/{page.slug}</div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </aside>
 
-          <button
-            onClick={() => navigator.clipboard.writeText(markdown)}
-            className="bg-tertiary py-3 px-6 rounded-xl text-white font-bold border border-white/10"
-          >
-            Copy Markdown
-          </button>
+          <main>
+            <div className="bg-white rounded-2xl p-5 mb-6 border border-gray-200 shadow-sm">
+              <label className="text-gray-900 font-bold block mb-2">
+                Page Title
+              </label>
+
+              <input
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full rounded-xl bg-gray-50 text-gray-900 p-4 outline-none border border-gray-200 mb-4"
+                placeholder="Doctrine"
+              />
+
+              <label className="text-gray-900 font-bold block mb-2">
+                URL Slug
+              </label>
+
+              <input
+                value={slug}
+                onChange={(e) => setSlug(slugify(e.target.value))}
+                disabled={!!editingSlug}
+                className="w-full rounded-xl bg-gray-50 text-gray-900 p-4 outline-none border border-gray-200 mb-4 disabled:opacity-60"
+                placeholder="doctrine"
+              />
+
+              <p className="text-gray-600">
+                URL preview:{" "}
+                <span className="text-gray-900 font-semibold">
+                  brandoncamerer.com/{editingSlug || slug || "untitled"}
+                </span>
+              </p>
+
+              {editingSlug && (
+                <p className="text-gray-500 text-sm mt-2">
+                  Editing an existing page. The slug is locked so the page URL
+                  does not accidentally change.
+                </p>
+              )}
+
+              {status && <p className="text-gray-600 mt-3">{status}</p>}
+            </div>
+
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
+              <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm">
+                <h2 className="text-gray-900 text-xl font-bold mb-4">
+                  Editor
+                </h2>
+
+                <textarea
+                  value={markdown}
+                  onChange={(e) => setMarkdown(e.target.value)}
+                  className="w-full min-h-[65vh] rounded-xl bg-gray-50 text-gray-900 p-5 font-mono text-sm outline-none border border-gray-200"
+                  spellCheck="false"
+                />
+              </div>
+
+              <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm">
+                <h2 className="text-gray-900 text-xl font-bold mb-4">
+                  Preview
+                </h2>
+
+                <div className="min-h-[65vh] rounded-xl bg-gray-50 p-5 border border-gray-200 overflow-auto">
+                  <article className="markdown-preview-light">
+                    <ReactMarkdown>{markdown}</ReactMarkdown>
+                  </article>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 flex gap-3">
+              <button
+                onClick={savePage}
+                className="bg-[#4f46e5] py-3 px-6 rounded-xl text-white font-bold"
+              >
+                {editingSlug ? "Update Page" : "Create Page"}
+              </button>
+
+              <button
+                onClick={() => navigate(`/${editingSlug || slug}`)}
+                className="bg-white py-3 px-6 rounded-xl text-gray-900 font-bold border border-gray-200"
+              >
+                View Page
+              </button>
+
+              <button
+                onClick={() => navigator.clipboard.writeText(markdown)}
+                className="bg-white py-3 px-6 rounded-xl text-gray-900 font-bold border border-gray-200"
+              >
+                Copy Markdown
+              </button>
+            </div>
+          </main>
         </div>
       </div>
-
-      <StarsCanvas />
     </div>
   );
 };
