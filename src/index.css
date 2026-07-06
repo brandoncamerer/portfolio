@@ -420,3 +420,35 @@
   border-top: 1px solid #e5e7eb;
   margin: 2rem 0;
 }
+
+/* Add missing Markdown heading levels */
+.markdown-preview-light h4 {
+  color: #111827 !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-preview-light h5 {
+  color: #111827 !important;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 1.5rem;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.markdown-preview-light h6 {
+  color: #374151 !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
