@@ -452,3 +452,37 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+
+/* Markdown tables */
+.markdown-preview-light table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.98rem;
+}
+
+.markdown-preview-light thead {
+  background: #f3f4f6;
+}
+
+.markdown-preview-light th,
+.markdown-preview-light td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+  color: #374151 !important;
+}
+
+.markdown-preview-light th {
+  color: #111827 !important;
+  font-weight: 700;
+}
+
+.markdown-preview-light td[align="right"],
+.markdown-preview-light th[align="right"] {
+  text-align: right;
+}
+
+.markdown-preview-light tr:nth-child(even) {
+  background: #fafafa;
+}

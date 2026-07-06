@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useParams } from "react-router-dom";
 
 const MarkdownViewPage = () => {
@@ -53,7 +54,7 @@ const MarkdownViewPage = () => {
     <div className="min-h-screen bg-[#f3f4f6]">
       <div className="max-w-4xl mx-auto px-6 py-16">
         <article className="markdown-preview-light bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
-          <ReactMarkdown>{page.markdown}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{page.markdown}</ReactMarkdown>
         </article>
       </div>
     </div>
