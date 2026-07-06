@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useNavigate } from "react-router-dom";
 
 const DEFAULT_MARKDOWN = `# Doctrine
@@ -240,7 +241,7 @@ const MarkdownPage = () => {
 
                 <div className="rounded-xl bg-gray-50 p-5 border border-gray-200">
                   <article className="markdown-preview-light">
-                    <ReactMarkdown>{markdown}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
                   </article>
                 </div>
               </div>
