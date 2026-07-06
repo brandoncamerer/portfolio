@@ -233,12 +233,12 @@ const MarkdownPage = () => {
                 />
               </div>
 
-              <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm">
-                <h2 className="text-gray-900 text-xl font-bold mb-4">
+              <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm max-h-[75vh] overflow-y-auto">
+                <h2 className="text-gray-900 text-xl font-bold mb-4 sticky top-0 bg-white pb-3 z-10">
                   Preview
                 </h2>
 
-                <div className="min-h-[65vh] rounded-xl bg-gray-50 p-5 border border-gray-200 overflow-auto">
+                <div className="rounded-xl bg-gray-50 p-5 border border-gray-200">
                   <article className="markdown-preview-light">
                     <ReactMarkdown>{markdown}</ReactMarkdown>
                   </article>
