@@ -33,26 +33,30 @@ const MarkdownViewPage = () => {
 
   if (!page) {
     return (
-      <div className="relative z-0 bg-primary min-h-screen">
+      <div className="min-h-screen bg-[#f3f4f6]">
         <div className="max-w-4xl mx-auto px-6 py-24">
-          <h1 className="text-white font-black md:text-[60px] sm:text-[50px] text-[36px]">
-            {status}
-          </h1>
+          <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+            <h1 className="text-gray-900 font-black md:text-[48px] sm:text-[40px] text-[32px]">
+              {status}
+            </h1>
 
-          <p className="text-secondary text-[17px] leading-[30px] mt-4">
-            No saved Markdown page exists for /{slug}.
-          </p>
-        </div>      </div>
+            <p className="text-gray-600 text-[17px] leading-[30px] mt-4">
+              No saved Markdown page exists for /{slug}.
+            </p>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
-    <div className="relative z-0 bg-primary min-h-screen">
-      <div className="max-w-4xl mx-auto px-6 py-24">
-        <article className="markdown-preview bg-tertiary rounded-2xl p-8 border border-white/10">
+    <div className="min-h-screen bg-[#f3f4f6]">
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        <article className="markdown-preview-light bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
           <ReactMarkdown>{page.markdown}</ReactMarkdown>
         </article>
-      </div>    </div>
+      </div>
+    </div>
   );
 };
 
