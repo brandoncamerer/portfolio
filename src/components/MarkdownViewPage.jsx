@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
-import { StarsCanvas } from "./canvas";
 
 const MarkdownViewPage = () => {
   const { slug } = useParams();
@@ -43,10 +42,7 @@ const MarkdownViewPage = () => {
           <p className="text-secondary text-[17px] leading-[30px] mt-4">
             No saved Markdown page exists for /{slug}.
           </p>
-        </div>
-
-        <StarsCanvas />
-      </div>
+        </div>      </div>
     );
   }
 
@@ -56,10 +52,7 @@ const MarkdownViewPage = () => {
         <article className="markdown-preview bg-tertiary rounded-2xl p-8 border border-white/10">
           <ReactMarkdown>{page.markdown}</ReactMarkdown>
         </article>
-      </div>
-
-      <StarsCanvas />
-    </div>
+      </div>    </div>
   );
 };
 
